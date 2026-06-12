@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ============================================================
+     NICHOLAS VARGAS — ACADEMIC WEBSITE
+     ============================================================
+     HOW TO EDIT THIS FILE
+     - Everything lives in this one file. No build tools needed.
+     - Open it in any text editor (TextEdit, Notepad, VS Code).
+     - Each section is marked with a banner comment like:
+           EDIT: BIO
+       Change the text between the HTML tags; leave the tags alone.
+     - To add your photo: put a file named  photo.jpg  in the same
+       folder as this file (a square-ish headshot works best).
+     - To add your CV: put a file named  cv.pdf  in the same folder.
+     - See README.md for free hosting instructions (GitHub Pages).
+     ============================================================ -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nicholas Vargas — UC Berkeley</title>
+<meta name="description" content="Nicholas Vargas is Associate Professor of Chicanx/Latinx Studies in the Department of Ethnic Studies at UC Berkeley. He studies Latinx racialization, Hispanic-Serving Institutions, and immigration politics.">
+
+<!-- Fonts: Source Serif 4 (headings) + Source Sans 3 (body). If these
+     fail to load, the site falls back to Georgia / system fonts. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   STYLES — you should rarely need to touch anything below.
+   Colors are defined once, here:
+   ============================================================ */
+:root{
+  --ink:        #1d1d1f;   /* main text */
+  --muted:      #5d5d63;   /* secondary text */
+  --blue:       #003262;   /* Berkeley blue: headings, links */
+  --blue-soft:  #2a5788;   /* link hover */
+  --gold:       #b3781d;   /* accent rules */
+  --rule:       #e4e4e6;   /* light dividers */
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:  "Source Sans 3", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+body{
+  margin:0;
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.65;
+  color:var(--ink);
+  background:#ffffff;
+}
+
+.wrap{ max-width:880px; margin:0 auto; padding:0 24px; }
+
+a{ color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(0,50,98,.25); }
+a:hover{ color:var(--blue-soft); border-bottom-color:var(--gold); }
+a:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+/* ---------- header & nav ---------- */
+.site-header{ padding:48px 0 0; }
+.site-name{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(2rem, 5vw, 2.8rem);
+  letter-spacing:-.01em;
+  margin:0 0 6px;
+  color:var(--blue);
+}
+.site-sub{
+  margin:0;
+  color:var(--muted);
+  font-size:1.02rem;
+}
+.site-sub span{ white-space:nowrap; }
+
+nav.site-nav{
+  position:sticky; top:0; z-index:10;
+  background:rgba(255,255,255,.96);
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  margin-top:28px;
+}
+nav.site-nav ul{
+  list-style:none; margin:0; padding:10px 0;
+  display:flex; flex-wrap:wrap; gap:6px 26px;
+}
+nav.site-nav a{
+  font-size:.86rem; font-weight:600;
+  letter-spacing:.10em; text-transform:uppercase;
+  color:var(--ink); border-bottom:none;
+}
+nav.site-nav a:hover{ color:var(--blue); }
+
+/* ---------- sections ---------- */
+section{ padding:54px 0 6px; }
+section h2{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:1.55rem;
+  color:var(--blue);
+  margin:0 0 22px;
+}
+.section-rule{
+  width:44px; height:3px; background:var(--gold);
+  border:none; margin:0 0 14px;
+}
+
+/* ---------- about ---------- */
+.about-grid{
+  display:grid;
+  grid-template-columns:208px 1fr;
+  gap:36px;
+  align-items:start;
+}
+.headshot{
+  width:208px; height:240px; object-fit:cover;
+  background:#eef1f4;
+  border:1px solid var(--rule);
+}
+.about-grid p{ margin:0 0 1em; }
+.quick-facts{
+  margin-top:18px; padding-top:14px;
+  border-top:1px solid var(--rule);
+  font-size:.92rem; color:var(--muted);
+}
+.quick-facts strong{ color:var(--ink); font-weight:600; }
+
+/* ---------- research themes ---------- */
+.theme{ margin:0 0 34px; }
+.theme h3{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:1.18rem;
+  margin:0 0 8px;
+}
+.theme h3::before{
+  content:"";
+  display:block;
+  width:28px; height:2px;
+  background:var(--gold);
+  margin-bottom:10px;
+}
+.theme p{ margin:0 0 10px; }
+.rep-work{
+  font-size:.92rem; color:var(--muted);
+  margin:0;
+}
+.rep-work em{ font-style:italic; }
+
+/* ---------- publications ledger ---------- */
+.pub-group h3{
+  font-family:var(--sans);
+  font-size:.86rem; font-weight:600;
+  letter-spacing:.10em; text-transform:uppercase;
+  color:var(--muted);
+  margin:34px 0 16px;
+}
+.pub{
+  display:grid;
+  grid-template-columns:64px 1fr;
+  gap:18px;
+  padding:10px 0;
+  border-bottom:1px solid var(--rule);
+}
+.pub:last-child{ border-bottom:none; }
+.pub-year{
+  font-family:var(--serif);
+  font-weight:600;
+  color:var(--gold);
+  font-variant-numeric:tabular-nums;
+}
+.pub-body{ font-size:.98rem; }
+.pub-body em{ font-style:italic; }
+.pub-note{
+  display:block;
+  font-size:.88rem; color:var(--muted);
+  margin-top:3px;
+}
+.coauthor-key{ font-size:.88rem; color:var(--muted); margin-top:14px; }
+
+/* ---------- teaching & advising ---------- */
+.course-list{ list-style:none; margin:0 0 8px; padding:0; }
+.course-list li{
+  padding:7px 0 7px 16px;
+  border-left:2px solid var(--rule);
+  margin-bottom:6px;
+}
+.course-list li:hover{ border-left-color:var(--gold); }
+.course-tag{ color:var(--muted); font-size:.88rem; }
+.inst-note{ color:var(--muted); font-size:.94rem; }
+
+/* ---------- contact ---------- */
+.contact-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:30px;
+}
+.contact-grid h3{
+  font-family:var(--sans);
+  font-size:.86rem; font-weight:600;
+  letter-spacing:.10em; text-transform:uppercase;
+  color:var(--muted); margin:0 0 10px;
+}
+.contact-grid ul{ list-style:none; margin:0; padding:0; }
+.contact-grid li{ margin-bottom:8px; }
+.cv-button{
+  display:inline-block; margin-top:6px;
+  padding:9px 18px;
+  background:var(--blue); color:#fff;
+  font-weight:600; font-size:.92rem;
+  border-bottom:none;
+}
+.cv-button:hover{ background:var(--blue-soft); color:#fff; }
+
+/* ---------- footer ---------- */
+footer{
+  margin-top:64px;
+  border-top:1px solid var(--rule);
+  padding:22px 0 44px;
+  font-size:.86rem; color:var(--muted);
+}
+
+/* ---------- mobile ---------- */
+@media (max-width:640px){
+  .about-grid{ grid-template-columns:1fr; }
+  .headshot{ width:160px; height:185px; }
+  .pub{ grid-template-columns:1fr; gap:2px; }
+  .contact-grid{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     EDIT: NAME AND TITLE LINE
+     ============================================================ -->
+<header class="site-header">
+  <div class="wrap">
+    <h1 class="site-name">Nicholas Vargas</h1>
+    <p class="site-sub">Associate Professor of Chicanx/Latinx Studies&ensp;·&ensp;<span>Department of Ethnic Studies</span>&ensp;·&ensp;<span>University of California, Berkeley</span></p>
+  </div>
+</header>
+
+<nav class="site-nav" aria-label="Site">
+  <div class="wrap">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#advising">Advising</a></li>
+      <li><a href="#contact">Contact &amp; CV</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============================================================
+     EDIT: BIO
+     To change the photo, replace the file photo.jpg in this folder.
+     ============================================================ -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <img class="headshot" src="photo.jpg" alt="Portrait of Nicholas Vargas">
+      <div>
+        <p>I am an Associate Professor of Latinx Studies in the Department of Ethnic Studies at the University of California, Berkeley, where I serve as coordinator of the Chicanx Latinx Studies Program. I am also Faculty Co-Director of the <a href="https://lsspi.berkeley.edu/home">Latino Social Science Pipeline Initiative</a> (LSSPI), a $1 million U.S. Department of Education&ndash;funded effort to strengthen pathways into Latino social science research, and co-lead the UC Berkeley <a href="https://ldc.berkeley.edu/">Latinxs and Democracy Cluster</a>.</p>
+        <p>My research examines the racial classification, identification, and stratification of Latinxs in the United States, with particular attention to higher education, immigration politics, and the production, maintenance, and measurement of race itself. Most of my work draws on large-scale and nationally representative data, and its throughline is a simple but challenging question I grapple with: how can we use race data critically to identify and rectify structural racism rather than obscure it?
+        <p> As a research program, my questions started at the individual level. Many Americans identify with one racial category while being seen and treated as members of another. Over time, my work has traced that same dynamic upward into organizations and the state, culminating in a recent Annual Review of Sociology article with Ariana Valle & Stephanie Dhuman that models racialization as the interplay of self-identification, the classifications others impose, and shared experiences of structural racism, all of which misalign with greater frequency than often imagined. </p>
+        <p>I have served on the U.S. Census Bureau&rsquo;s National Advisory Committee on Racial, Ethnic, and Other Populations, as Chair of the American Sociological Association&rsquo;s Section on Racial and Ethnic Minorities, and as Deputy Editor of <em>Sociology of Race and Ethnicity</em>. Before Berkeley, I was Associate Professor of Sociology and Coordinator of Latinx Studies (M.A. specialization)  at the University of Florida, and Assistant Professor at the University of Texas at Dallas. I am a first-generation college graduate.</p>
+        <!-- Delete or edit the line above ("first-generation") if you prefer. -->
+        <div class="quick-facts">
+          <strong>Ph.D.</strong> Sociology, Purdue University, 2013&ensp;·&ensp;<strong>M.A.</strong> University of Florida, 2009&ensp;·&ensp;<strong>B.A.</strong> Bloomsburg University, 2006
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EDIT: RESEARCH THEMES
+     Each theme is one <div class="theme"> block. Copy a whole
+     block to add a theme; delete a whole block to remove one.
+     ============================================================ -->
+<section id="research">
+  <div class="wrap">
+    <hr class="section-rule">
+    <h2>Research</h2>
+    <p>My scholarship sits at the intersection of sociology and Latinx Studies and is organized around four connected themes.</p>
+
+    <div class="theme">
+      <h3>Latinx Racialization: Classification, Contestation, and Ideology</h3>
+      <p>How are Latinxs racialized in the United States, and what happens when different dimensions of race don&rsquo;t line up? This work examines misalignments among self-identification, how others perceive us, skin color, and official classification, along with their consequences for ideology and stratification. It includes research on contested racial identities, colorblind ideology, Latinx &ldquo;whitening,&rdquo hypotheses, and the generational politics of ethnoracial labels. A recent synthesis with Ariana Valle and Stephanie Dhuman, in the Annual Review of Sociology, develops a multidimensional framework for holding and clarifying complexities of Latinx racialization, a model we extend to the field of education in a forthcoming issue of Review of Research in Education.</p>
+     
+
+    <div class="theme">
+      <h3>Hispanic-Serving Institutions and Latinx Studies as Institutional Infrastructure</h3>
+      <p>Organizations are racialized, and they too, can be aligned or misaligned across multiple racial dimensions. This line of research asks whether and how Hispanic-Serving Institutions serve Latinx students&mdash. I examine how federal HSI funds are allocated, whether whiter institutions are more likely to receive them, and how Latinx faculty representation maps onto resources. A related strand documents the growth, stagnation, and invisibility of Latinx Studies programs since the 1960s and develops the argument that Latinx Studies functions as vital institutional infrastructure for belonging and degree completion, with cascading positive impacts. And yet, only 90 of the nation's 2500+ colleges offer a Latinx Studies major, and the very programs built by students of color are rarely elevated by HSI institutionalization. </p>
+
+
+    <div class="theme">
+      <h3>Immigration Politics, Enforcement, and Public Opinion</h3>
+      <p>What shapes attitudes toward immigrants&mdash;and what do enforcement regimes do to the communities they target? Current projects examine economic anxiety as a fluctuating frame for anti-undocumented sentiment among Latinx and white voters across partisan contexts; how the 2025 Los Angeles immigration raids reshaped everyday mobility and local economies; and the implications of guaranteed income for the well-being of immigrant families. With colleagues at UC Berkeley and the UCLA Latino Policy &amp; Politics Institute, this work also draws on public-facing polling and informs policy analysis.</p>
+
+
+    <div class="theme">
+      <h3>Race, Data, and Measurement</h3>
+      <p>Cutting across all of this work is a methodological commitment to think critically about what race data can and cannot do. I have contributed to national conversations on ethnoracial measurement through service on the U.S. Census Bureau&rsquo;s National Advisory Committee and engagement with revisions to federal race and ethnicity data standards, and my empirical work consistently asks how categories, labels, and measures shape what we can see about inequality.</p>
+    
+</section>
+<!-- ============================================================
+     EDIT: PUBLICATIONS
+     Each entry is one <div class="pub"> block:
+         <div class="pub">
+           <div class="pub-year">YEAR</div>
+           <div class="pub-body">Citation text
+             <span class="pub-note">Optional award/media note</span>
+           </div>
+         </div>
+     To link a title to the article, wrap it in
+         <a href="https://doi.org/...">Title</a>
+     ============================================================ -->
+<section id="publications">
+  <div class="wrap">
+    <hr class="section-rule">
+    <h2>Publications</h2>
+    <p>A full list also appears in my <a href="cv.pdf">CV</a> and on <a href="https://scholar.google.com/citations?user=e5YCWIoAAAAJ">Google Scholar</a>. Asterisks (*) denote student co-authors.</p>
+
+    <div class="pub-group">
+      <h3>In Progress &amp; Under Review</h3>
+
+      <div class="pub">
+        <div class="pub-year">&nbsp;</div>
+        <div class="pub-body">&ldquo;Economic Anxiety as a Frame for Bias? Anti-Undocumented Sentiment among Latinxs and Whites across Partisan Contexts.&rdquo; <span class="pub-note">Under review.</span></div>
+      </div>
+      <div class="pub">
+        <div class="pub-year">&nbsp;</div>
+        <div class="pub-body">&ldquo;Immigration Enforcement, Isolation, and Economic Impacts: How L.A. Raids Shaped Mobility in the Summer of 2025.&rdquo;</div>
+      </div>
+      <div class="pub">
+        <div class="pub-year">&nbsp;</div>
+        <div class="pub-body">&ldquo;More than a Major: Latinx Studies as Institutional Infrastructure.&rdquo;</div>
+      </div>
+      <div class="pub">
+        <div class="pub-year">&nbsp;</div>
+        <div class="pub-body">&ldquo;Guaranteed Income and Implications for Well-Being of Immigrant Families.&rdquo;</div>
+      </div>
+    </div>
+
+    <div class="pub-group">
+      <h3>Journal Articles</h3>
+
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">&ldquo;A Model of Latinx Racialization: Multiple Dimensions and (Mis)alignments in Educational Equity.&rdquo; <em>Review of Research in Education</em>. Forthcoming. (with S. Dhuman and A. Valle, equal authorship)</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2025</div>
+        <div class="pub-body">&ldquo;Unraveling Complexities of Latino Racialization.&rdquo; <em>Annual Review of Sociology</em> 51: 377&ndash;401. (with A. Valle and S. Dhuman, equal authorship)</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2023</div>
+        <div class="pub-body">&ldquo;How Many Latino Studies Programs Are There? Tracking Departmental Growth, Stagnation, and Invisibility, 1960&ndash;2020.&rdquo; <em>Latino Studies</em> 21: 388&ndash;410. (with G. C. Mora and D. Cedillo*, equal authorship)
+          <span class="pub-note">Featured in NBC News, the New York Times, and other outlets.</span></div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2023</div>
+        <div class="pub-body">&ldquo;Race and Ideology in a Pandemic: White Privilege and Patterns of Risk Perception During Covid-19.&rdquo; <em>Social Problems</em> 70(1): 219&ndash;237. (with G. C. Mora and S. Gleeson, equal authorship)</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-body">&ldquo;Who Identifies as Latinx? The Generational Politics of Ethnoracial Labels.&rdquo; <em>Social Forces</em> 100(3): 1170&ndash;1194. (with G. C. Mora and R. P&eacute;rez*, equal authorship)</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-body">Review of <em>Inventing Latinos: A New Story of American Racism</em>, by Laura E. G&oacute;mez. <em>Sociological Forum</em> 37(4): 1210&ndash;1214. (with R. Garc&iacute;a, equal authorship)</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2020</div>
+        <div class="pub-body">&ldquo;Latinx Faculty Representation and Resource Allocations at Hispanic Serving Institutions.&rdquo; <em>Race, Ethnicity and Education</em> 23(1): 39&ndash;54. (with J. Villa-Palomino* and E. Davis*)
+          <span class="pub-note">Distinguished Research Article Award, Honorable Mention, ASA Latina/Latino Sociology Section (2021).</span></div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2020</div>
+        <div class="pub-body">&ldquo;Threatening Places or Diverse Spaces: Divergent Constructions of Florida Puerto Ricans across Twitter and Newspaper Articles.&rdquo; <em>Sociological Inquiry</em> 90(1): 101&ndash;122. (with S. Dhuman Giron*)</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2019</div>
+        <div class="pub-body">&ldquo;Racing to Serve or Race-ing for Money? Hispanic Serving Institutions and the Colorblind Allocation of Racialized Federal Funding.&rdquo; <em>Sociology of Race and Ethnicity</em> 5(3): 401&ndash;415. (with J. Villa-Palomino*)
+          <span class="pub-note">Reprinted in <em>Sage Readings for Social Problems</em> (Sage, 2021).</span></div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2018</div>
+        <div class="pub-body">&ldquo;Racial Expropriation in Higher Education: Are Whiter Hispanic Serving Institutions More Likely to Receive Minority Serving Institution Funds?&rdquo; <em>Socius</em> 4: 1&ndash;16.</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2018</div>
+        <div class="pub-body">&ldquo;Ideological Whitening: Does Skin Color Shape Colorblind Ideology Adherence for Latina/os?&rdquo; <em>Ethnic and Racial Studies</em> 41(14): 2407&ndash;2425.</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2016</div>
+        <div class="pub-body">&ldquo;The Dynamics of Social Support Inequality: Maintenance Gaps by Race and Socioeconomic Status?&rdquo; <em>Social Forces</em> 94(4): 1795&ndash;1822. (with M. H. Schafer)</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2016</div>
+        <div class="pub-body">&ldquo;Documenting Contested Racial Identities among Self-Identified Latina/os, Asians, Blacks, and Whites.&rdquo; <em>American Behavioral Scientist</em> 60(4): 442&ndash;464. (with K. Stainback)</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2016</div>
+        <div class="pub-body">&ldquo;Racial Identity Contestation: Mapping and Measuring Racial Boundaries.&rdquo; <em>Sociology Compass</em> 10(8): 718&ndash;729. (with J. Kingsbury*)</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2016</div>
+        <div class="pub-body">&ldquo;Transnational Patterns among Latina/o American and Asian American Children of Immigrants.&rdquo; <em>Journal of Ethnic and Migration Studies</em> 42(7): 1177&ndash;1198. (with M. Trieu and R. G. Gonzales)</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2016</div>
+        <div class="pub-body">&ldquo;Latina/o Congregations and Youth Educational Expectations.&rdquo; <em>Sociology of Religion</em> 77(2): 171&ndash;192. (with E. Sanchez*, R. Burwell, J. Martinez, M. Pe&ntilde;a, and E. I. Hernandez)
+          <span class="pub-note">Reprinted in <em>Sociology of Religion: A Reader</em>, 3rd ed. (Routledge, 2019).</span></div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2015</div>
+        <div class="pub-body">&ldquo;Latina/o Whitening? Which Latinas/os Self-Classify as White and Report Being Perceived as White by Other Americans?&rdquo; <em>Du Bois Review</em> 12(1): 119&ndash;136.
+          <span class="pub-note">Featured in NBC News, La Opini&oacute;n, The American Prospect, and other outlets.</span></div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2015</div>
+        <div class="pub-body">&ldquo;Economic Consequences of Horizontal Stratification in Postsecondary Education: Evidence from Urban China.&rdquo; <em>Higher Education</em> 70(3): 337&ndash;358. (with A. Hu)</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2014</div>
+        <div class="pub-body">&ldquo;Off White: Colorblind Ideology at the Margins of Whiteness.&rdquo; <em>Ethnic and Racial Studies</em> 37(13): 2281&ndash;2302.</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2013</div>
+        <div class="pub-body">&ldquo;Diversity in Action: Interpersonal Networks and the Distribution of Advice.&rdquo; <em>Social Science Research</em> 42(1): 46&ndash;58. (with M. H. Schafer)</div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2012</div>
+        <div class="pub-body">&ldquo;Retrospective Accounts of Religious Disaffiliation in the United States: Stressors, Skepticism, and Political Factors.&rdquo; <em>Sociology of Religion</em> 73(2): 200&ndash;223.
+          <span class="pub-note">Best Graduate Student Paper, ASA Section on Religion (2012).</span></div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2011</div>
+        <div class="pub-body">&ldquo;Befriending the &lsquo;Other&rsquo;: Patterns of Social Ties Between the Religious and Non-Religious.&rdquo; <em>Sociological Perspectives</em> 54(4): 713&ndash;731. (with M. T. Loveland)
+          <span class="pub-note">Most Distinguished Article, ASA Section on Religion (2012).</span></div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2011</div>
+        <div class="pub-body">&ldquo;The Role of Religious Similarity in the Quality of Mother&ndash;Adult Child Relations: Differences Within Families and Between Racial Groups.&rdquo; <em>Research on Aging</em> 33(1): 3&ndash;27. (with J. Sechrist, J. J. Suitor, and K. Pillemer)</div>
+      </div>
+    </div>
+
+    <div class="pub-group">
+      <h3>Policy Briefs &amp; Public Scholarship</h3>
+
+      <div class="pub">
+        <div class="pub-year">2025</div>
+        <div class="pub-body">&ldquo;Latinos, Younger Voters, and Moderates among Republicans Most Likely to Break with Trump II-Era Immigration Politics: Poll Findings from California.&rdquo; <em>Latino Policy &amp; Politics Institute: Expert Issues Brief</em>. (with G. C. Mora and D. Reyes, equal authorship)
+          <span class="pub-note">Featured in the Los Angeles Times, Vox, KTVU, Spectrum News, and syndicated across 45+ outlets nationwide.</span></div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2024</div>
+        <div class="pub-body">&ldquo;California&rsquo;s Non-College Goers: Latinos Surpass Other Ethnoracial Groups in a Hispanic-Serving State.&rdquo; <em>Policy Brief, California Research Bureau</em>. (with G. Garcia, equal authorship)</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     EDIT: TEACHING
+     ============================================================ -->
+<section id="teaching">
+  <div class="wrap">
+    <hr class="section-rule">
+    <h2>Teaching</h2>
+    <p>At UC Berkeley I teach undergraduate and graduate courses in Chicanx Latinx Studies and Ethnic Studies:</p>
+    <ul class="course-list">
+      <li>Race and Latinxs <span class="course-tag">&mdash; undergraduate seminar</span></li>
+      <li>Latinx Data Lab: Bay Area Communities by the Numbers <span class="course-tag">&mdash; undergraduate</span></li>
+      <li>Latino Social Science Thought <span class="course-tag">&mdash; graduate</span></li>
+      <li>Social Structures: Contemporary Theories and Methods <span class="course-tag">&mdash; graduate</span></li>
+    </ul>
+    <p class="inst-note">Previously, I taught courses on race and ethnicity, Latinx Studies, migration, racism in education, and sociology at the University of Florida (2015&ndash;2023), the University of Texas at Dallas (2013&ndash;2015), and Purdue University (2009&ndash;2013).</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     EDIT: ADVISING
+     ============================================================ -->
+<section id="advising">
+  <div class="wrap">
+    <hr class="section-rule">
+    <h2>Advising &amp; Mentorship</h2>
+    <p>Mentorship is central to my work. I have chaired 19 graduate committees and served on 16 more, advising students whose research spans Latinx racialization, immigration, higher education, religion, and diasporic identity. Through LSSPI, I also help direct research mentorship programs, and national junior scholars symposiums in the Latino social sciences.</p>
+    <p>Prospective graduate students interested in working with me should apply through the <a href="https://ethnicstudies.berkeley.edu/">Department of Ethnic Studies</a> Ph.D. program and are welcome to reach out by email.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     EDIT: CONTACT
+     Add your office/building below if you'd like.
+     ============================================================ -->
+<section id="contact">
+  <div class="wrap">
+    <hr class="section-rule">
+    <h2>Contact &amp; CV</h2>
+    <div class="contact-grid">
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:nicholas.vargas@berkeley.edu">nicholas.vargas@berkeley.edu</a></li>
+          <li>Department of Ethnic Studies<br>University of California, Berkeley<br>Berkeley, CA 94720</li>
+        </ul>
+        <!-- To add the CV: save your CV as cv.pdf in this folder. -->
+        <a class="cv-button" href="cv.pdf">Download CV (PDF)</a>
+      </div>
+      <div>
+        <h3>Elsewhere</h3>
+        <ul>
+          <li><a href="https://scholar.google.com/citations?user=e5YCWIoAAAAJ">Google Scholar</a></li>
+          <li><a href="https://ethnicstudies.berkeley.edu/people/nicholas-vargas">Department profile</a></li>
+          <li><a href="https://lsspi.berkeley.edu/home">Latino Social Science Pipeline Initiative</a></li>
+          <li><a href="https://ldc.berkeley.edu/">Latinxs and Democracy Cluster</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     EDIT: FOOTER (update the date when you make changes)
+     ============================================================ -->
+<footer>
+  <div class="wrap">
+    &copy; 2026 Nicholas Vargas &middot; Last updated June 2026
+  </div>
+</footer>
+
+</body>
+</html>
